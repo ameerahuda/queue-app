@@ -50,7 +50,16 @@ export const Tabs = ({ pendingJobs, completedJobs, cancelledJobs }) => {
     });
   }
 
-  useEffect(() =>{
+  /*
+  * These useEffects are to update the local instance
+  * of the pendingJobs, completedJobs and cancelledJobs arrays
+  * These useEffects are called whenever these object arrays
+  * are changed in state
+  * 
+  * This is not really required. Down below I can directly plug in
+  * the associated props. This was an oversight on my end.
+  */
+  useEffect(() => {
     setPJobs(pendingJobs)
   }, [pendingJobs])
 

@@ -141,11 +141,26 @@ export const Header = ({ workingItem, workingItemProgress, size }) => {
         dispatch({ type: "REFRESH" });
     }
 
+    /*
+    *   This useEffect is used to update the size property in state
+    *   everytime a job is added to the queue.
+    * 
+    *   When size is updated, it will trigger the useEffect in
+    *   Home.js.
+    */
     useEffect(() => {
         dispatch({ type: "UPDATE_SIZE", payload: currentSize });
         // eslint-disable-next-line
     }, [currentSize])
 
+    /*
+    *   This useEffect will be triggered whenever user inputs any values
+    *   in the Add Job modal. It will check to make sure that the user 
+    *   inputs are valid and can be added to the queue.
+    * 
+    *   Otherwise, will trigger the error message to be displayed in 
+    *   modal as user provides input.
+    */
     useEffect(() => {
         if (!jobName.match(/^([A-Za-z0-9 ]*)$/)) {
             setError(true);
